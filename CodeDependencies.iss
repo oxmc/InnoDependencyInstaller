@@ -775,6 +775,40 @@ begin
   end;
 end;
 
+procedure Dependency_AddPowershell7;
+var
+  RegPath: String;
+  InstallParams: String;
+begin
+  // https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4&WT.mc_id=THOMASMAURER-blog-thmaure#msi
+  // Set the registry path for PowerShell Core installed versions
+  RegPath := 'SOFTWARE\Microsoft\PowerShellCore\InstalledVersions';
+
+  // Check if any version of PowerShell Core is already installed
+  if not RegKeyExists(HKLM, RegPath) then 
+  begin
+    InstallParams := '/passive /norestart ' +
+                         'ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ' +
+                         'ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 ' +
+                         'ENABLE_PSREMOTING=1 ' +
+                         'REGISTER_MANIFEST=1 ' +
+                         'ADD_PATH=1 ' +
+                         'DISABLE_TELEMETRY=1';
+    Dependency_Add(
+      'PowerShell-7.4.6' + Dependency_ArchSuffix + '.msi',
+      InstallParams,
+      'PowerShell 7.4.6' + Dependency_ArchTitle,
+      Dependency_String(
+        'https://github.com/PowerShell/PowerShell/releases/download/v7.4.6/PowerShell-7.4.6-win-x86.msi',
+        'https://github.com/PowerShell/PowerShell/releases/download/v7.4.6/PowerShell-7.4.6-win-x64.msi'
+      ),
+      '',
+      False,
+      False
+    );
+  end;
+end;
+
 [Files]
 #ifdef Dependency_Path_DirectX
 Source: "{#Dependency_Path_DirectX}dxwebsetup.exe"; Flags: dontcopy noencryption
