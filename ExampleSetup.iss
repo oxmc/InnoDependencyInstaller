@@ -79,12 +79,12 @@ begin
   //Dependency_AddDotNet70; // EOL
   //Dependency_AddDotNet70Asp; // EOL
   //Dependency_AddDotNet70Desktop; // EOL
-  Dependency_AddDotNet80;
-  Dependency_AddDotNet80Asp;
-  Dependency_AddDotNet80Desktop;
-  Dependency_AddDotNet90;
-  Dependency_AddDotNet90Asp;
-  Dependency_AddDotNet90Desktop;
+  //Dependency_AddDotNet80; // EOL
+  //Dependency_AddDotNet80Asp; // EOL
+  //Dependency_AddDotNet80Desktop; // EOL
+  //Dependency_AddDotNet90; // EOL
+  //Dependency_AddDotNet90Asp; // EOL
+  //Dependency_AddDotNet90Desktop; // EOL
   Dependency_AddDotNet100;
   Dependency_AddDotNet100Asp;
   Dependency_AddDotNet100Desktop;
